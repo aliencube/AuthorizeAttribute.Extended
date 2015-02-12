@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{50DB2D1B-4448-4AFB-AA25-D0D2A66F53F1}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00_Documents", "00_Documents", "{7837B8C2-D04E-42CE-AA00-4A7EBB9D63E3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Properties", "Properties", "{DC453109-1E9E-4683-9BB2-0615F370ECB3}"
+	ProjectSection(SolutionItems) = preProject
+		..\Documents\Properties\SharedAssemblyInfo.cs = ..\Documents\Properties\SharedAssemblyInfo.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01_Configs", "01_Configs", "{F420F324-DCD9-40EE-AD41-35393ACC074D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02_Apps", "02_Apps", "{6D8D30A2-CB93-4FAF-A4A2-D2E8B819F2A9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03_Services", "03_Services", "{8E4CC778-F953-4207-9616-4146CD5C97AB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04_Models", "04_Models", "{49628139-B008-46FD-9B77-D0B6C7BA5613}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "99_Tests", "99_Tests", "{C34E9A27-96D2-47EF-9A17-0E89C003AD26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthorizeAttributeExtended.Tests", "99_Tests\AuthorizeAttributeExtended.Tests\AuthorizeAttributeExtended.Tests.csproj", "{59893C38-5D80-4DC8-97AC-FBB7990E521F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthorizeAttributeExtended.WebApp", "02_Apps\AuthorizeAttributeExtended.WebApp\AuthorizeAttributeExtended.WebApp.csproj", "{55650CA1-BA28-44C5-96CF-3F54E2B8440B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{59893C38-5D80-4DC8-97AC-FBB7990E521F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59893C38-5D80-4DC8-97AC-FBB7990E521F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59893C38-5D80-4DC8-97AC-FBB7990E521F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59893C38-5D80-4DC8-97AC-FBB7990E521F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55650CA1-BA28-44C5-96CF-3F54E2B8440B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55650CA1-BA28-44C5-96CF-3F54E2B8440B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55650CA1-BA28-44C5-96CF-3F54E2B8440B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55650CA1-BA28-44C5-96CF-3F54E2B8440B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DC453109-1E9E-4683-9BB2-0615F370ECB3} = {7837B8C2-D04E-42CE-AA00-4A7EBB9D63E3}
+		{59893C38-5D80-4DC8-97AC-FBB7990E521F} = {C34E9A27-96D2-47EF-9A17-0E89C003AD26}
+		{55650CA1-BA28-44C5-96CF-3F54E2B8440B} = {6D8D30A2-CB93-4FAF-A4A2-D2E8B819F2A9}
+	EndGlobalSection
+EndGlobal
