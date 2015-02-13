@@ -100,6 +100,7 @@
     <Compile Include="..\..\..\Documents\Properties\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Helpers\AuthorizeAttributeHelper.cs" />
     <Compile Include="Helpers\AuthenticateAttributeHelper.cs" />
     <Compile Include="AuthenticateAttributeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

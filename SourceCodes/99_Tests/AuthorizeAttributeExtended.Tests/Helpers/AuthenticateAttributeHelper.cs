@@ -18,14 +18,14 @@ namespace Aliencube.AuthorizeAttribute.Extended.Tests.Helpers
             return this.PublicAuthenticateCore(httpContext);
         }
 
-        public virtual HttpValidationStatus PublicOnCacheAuthorization(HttpContextBase httpContext)
+        public virtual HttpValidationStatus PublicOnCacheAuthentication(HttpContextBase httpContext)
         {
-            return base.OnCacheAuthorization(httpContext);
+            return base.OnCacheAuthentication(httpContext);
         }
 
-        protected override HttpValidationStatus OnCacheAuthorization(HttpContextBase httpContext)
+        protected override HttpValidationStatus OnCacheAuthentication(HttpContextBase httpContext)
         {
-            return this.PublicOnCacheAuthorization(httpContext);
+            return this.PublicOnCacheAuthentication(httpContext);
         }
 
         public virtual void PublicHandleUnauthorizedRequest(AuthorizationContext filterContext)
