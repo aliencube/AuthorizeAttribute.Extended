@@ -4,7 +4,7 @@ using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Aliencube.AuthorizeAttribute.Extended.Tests
+namespace Aliencube.AuthorizeAttribute.Extended
 {
     /// <summary>
     /// This represents the attribute entity for authentication.
@@ -23,7 +23,7 @@ namespace Aliencube.AuthorizeAttribute.Extended.Tests
         /// </summary>
         public override object TypeId
         {
-            get { return _typeId; }
+            get { return this._typeId; }
         }
 
         /// <summary>
@@ -31,18 +31,18 @@ namespace Aliencube.AuthorizeAttribute.Extended.Tests
         /// </summary>
         public string Users
         {
-            get { return _users ?? String.Empty; }
+            get { return this._users ?? String.Empty; }
             set
             {
-                _users = value;
-                _usersSplit = SplitString(value);
+                this._users = value;
+                this._usersSplit = SplitString(value);
             }
         }
 
         /// <summary>
         /// Gets the value that specified whether to be authenticated or not.
         /// </summary>
-        protected internal bool IsAuthenticated { get; private set; }
+        protected bool IsAuthenticated { get; set; }
 
         /// <summary>
         /// When overridden, provides an entry point for custom authentication checks.
@@ -63,7 +63,7 @@ namespace Aliencube.AuthorizeAttribute.Extended.Tests
                 return false;
             }
 
-            if (_usersSplit.Length > 0 && !_usersSplit.Contains(user.Identity.Name, StringComparer.OrdinalIgnoreCase))
+            if (this._usersSplit.Length > 0 && !this._usersSplit.Contains(user.Identity.Name, StringComparer.OrdinalIgnoreCase))
             {
                 return false;
             }
@@ -73,7 +73,7 @@ namespace Aliencube.AuthorizeAttribute.Extended.Tests
 
         private void CacheValidateHandler(HttpContext context, object data, ref HttpValidationStatus validationStatus)
         {
-            validationStatus = OnCacheAuthorization(new HttpContextWrapper(context));
+            validationStatus = this.OnCacheAuthorization(new HttpContextWrapper(context));
         }
 
         /// <summary>
@@ -124,7 +124,7 @@ namespace Aliencube.AuthorizeAttribute.Extended.Tests
             {
                 this.IsAuthenticated = false;
 
-                HandleUnauthorizedRequest(filterContext);
+                this.HandleUnauthorizedRequest(filterContext);
             }
         }
 
@@ -155,7 +155,7 @@ namespace Aliencube.AuthorizeAttribute.Extended.Tests
             return (isAuthorized) ? HttpValidationStatus.Valid : HttpValidationStatus.IgnoreThisRequest;
         }
 
-        internal static string[] SplitString(string original)
+        private static string[] SplitString(string original)
         {
             if (String.IsNullOrEmpty(original))
             {

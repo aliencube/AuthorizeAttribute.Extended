@@ -1,4 +1,5 @@
 using System.Web;
+using System.Web.Mvc;
 
 namespace Aliencube.AuthorizeAttribute.Extended.Tests.Helpers
 {
@@ -7,14 +8,14 @@ namespace Aliencube.AuthorizeAttribute.Extended.Tests.Helpers
     /// </summary>
     public class AuthenticateAttributeHelper : AuthenticateAttribute
     {
-        public virtual bool PublicAuthorizeCore(HttpContextBase httpContext)
+        public virtual bool PublicAuthenticateCore(HttpContextBase httpContext)
         {
-            return base.AuthorizeCore(httpContext);
+            return base.AuthenticateCore(httpContext);
         }
 
-        protected override bool AuthorizeCore(HttpContextBase httpContext)
+        protected override bool AuthenticateCore(HttpContextBase httpContext)
         {
-            return this.PublicAuthorizeCore(httpContext);
+            return this.PublicAuthenticateCore(httpContext);
         }
 
         public virtual HttpValidationStatus PublicOnCacheAuthorization(HttpContextBase httpContext)
@@ -25,6 +26,24 @@ namespace Aliencube.AuthorizeAttribute.Extended.Tests.Helpers
         protected override HttpValidationStatus OnCacheAuthorization(HttpContextBase httpContext)
         {
             return this.PublicOnCacheAuthorization(httpContext);
+        }
+
+        public virtual void PublicHandleUnauthorizedRequest(AuthorizationContext filterContext)
+        {
+            base.HandleUnauthorizedRequest(filterContext);
+        }
+
+        protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
+        {
+            this.PublicHandleUnauthorizedRequest(filterContext);
+        }
+
+        public virtual new bool IsAuthenticated
+        {
+            get
+            {
+                return base.IsAuthenticated;
+            }
         }
     }
 }

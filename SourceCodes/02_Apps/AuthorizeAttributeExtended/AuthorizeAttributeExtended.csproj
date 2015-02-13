@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{59893C38-5D80-4DC8-97AC-FBB7990E521F}</ProjectGuid>
+    <ProjectGuid>{DF9FADE7-1841-47DD-B822-2B277DDC4DCA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Aliencube.AuthorizeAttribute.Extended.Tests</RootNamespace>
-    <AssemblyName>Aliencube.AuthorizeAttribute.Extended.Tests</AssemblyName>
+    <RootNamespace>Aliencube.AuthorizeAttribute.Extended</RootNamespace>
+    <AssemblyName>Aliencube.AuthorizeAttribute.Extended</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,41 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentAssertions">
-      <HintPath>..\..\packages\FluentAssertions.3.2.2\lib\net45\FluentAssertions.dll</HintPath>
-    </Reference>
-    <Reference Include="FluentAssertions.Core">
-      <HintPath>..\..\packages\FluentAssertions.3.2.2\lib\net45\FluentAssertions.Core.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="NSubstitute">
-      <HintPath>..\..\packages\NSubstitute.1.8.1.0\lib\net45\NSubstitute.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.core">
-      <HintPath>..\..\packages\NUnitTestAdapter.1.2\lib\nunit.core.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="nunit.core.interfaces">
-      <HintPath>..\..\packages\NUnitTestAdapter.1.2\lib\nunit.core.interfaces.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.util">
-      <HintPath>..\..\packages\NUnitTestAdapter.1.2\lib\nunit.util.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="NUnit.VisualStudio.TestAdapter">
-      <HintPath>..\..\packages\NUnitTestAdapter.1.2\lib\NUnit.VisualStudio.TestAdapter.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -100,18 +71,11 @@
     <Compile Include="..\..\..\Documents\Properties\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Helpers\AuthenticateAttributeHelper.cs" />
-    <Compile Include="AuthenticateAttributeTest.cs" />
+    <Compile Include="AuthenticateAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\02_Apps\AuthorizeAttributeExtended\AuthorizeAttributeExtended.csproj">
-      <Project>{df9fade7-1841-47dd-b822-2b277ddc4dca}</Project>
-      <Name>AuthorizeAttributeExtended</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
