@@ -15,6 +15,9 @@ namespace Aliencube.AuthorizeAttribute.Extended
         private static readonly char[] _splitParameter = new[] { ',' };
         private readonly object _typeId = new object();
 
+        private string _users;
+        private string[] _usersSplit = new string[0];
+
         private string _roles;
         private string[] _rolesSplit = new string[0];
 
@@ -24,6 +27,19 @@ namespace Aliencube.AuthorizeAttribute.Extended
         public override object TypeId
         {
             get { return this._typeId; }
+        }
+
+        /// <summary>
+        /// Gets or sets the users that are authenticated.
+        /// </summary>
+        public string Users
+        {
+            get { return _users ?? String.Empty; }
+            set
+            {
+                _users = value;
+                _usersSplit = SplitString(value);
+            }
         }
 
         /// <summary>
@@ -40,17 +56,18 @@ namespace Aliencube.AuthorizeAttribute.Extended
         }
 
         /// <summary>
-        /// Gets the value that specified whether to be authorised or not.
+        /// Gets the authorisation status value.
         /// </summary>
-        protected bool IsAuthorized { get; set; }
+        protected AuthorizationStatus AuthorizationStatus { get; private set; }
 
         /// <summary>
         /// When overridden, provides an entry point for custom authentication checks.
         /// </summary>
         /// <param name="httpContext">The HTTP context, which encapsulates all HTTP-specific information about an individual HTTP request.</param>
+        /// <param name="authorizationStatus"><c>AuthorizationStatus</c> value.</param>
         /// <returns>Returns <c>True</c>, if the user is authenticated; otherwise returns <c>False</c>.</returns>
         /// <remarks>This method must be thread-safe since it is called by the thread-safe OnCacheAuthorization() method.</remarks>
-        protected virtual bool AuthorizeCore(HttpContextBase httpContext)
+        protected virtual bool AuthorizeCore(HttpContextBase httpContext, out AuthorizationStatus authorizationStatus)
         {
             if (httpContext == null)
             {
@@ -58,11 +75,25 @@ namespace Aliencube.AuthorizeAttribute.Extended
             }
 
             IPrincipal user = httpContext.User;
-            if (_rolesSplit.Length > 0 && !_rolesSplit.Any(user.IsInRole))
+            if (!user.Identity.IsAuthenticated)
             {
+                authorizationStatus = AuthorizationStatus.Unauthorized;
                 return false;
             }
 
+            if (_usersSplit.Length > 0 && !_usersSplit.Contains(user.Identity.Name, StringComparer.OrdinalIgnoreCase))
+            {
+                authorizationStatus = AuthorizationStatus.Unauthorized;
+                return false;
+            }
+
+            if (_rolesSplit.Length > 0 && !_rolesSplit.Any(user.IsInRole))
+            {
+                authorizationStatus = AuthorizationStatus.Forbidden;
+                return false;
+            }
+
+            authorizationStatus = AuthorizationStatus.Accepted;
             return true;
         }
 
@@ -99,9 +130,10 @@ namespace Aliencube.AuthorizeAttribute.Extended
                 return;
             }
 
-            if (this.AuthorizeCore(filterContext.HttpContext))
+            AuthorizationStatus authorizationStatus;
+            if (this.AuthorizeCore(filterContext.HttpContext, out authorizationStatus))
             {
-                this.IsAuthorized = true;
+                this.AuthorizationStatus = authorizationStatus;
 
                 // ** IMPORTANT **
                 // Since we're performing authorization at the action level, the authorization code runs
@@ -117,10 +149,32 @@ namespace Aliencube.AuthorizeAttribute.Extended
             }
             else
             {
-                this.IsAuthorized = false;
+                this.AuthorizationStatus = authorizationStatus;
 
-                this.HandleForbiddenRequest(filterContext);
+                switch (this.AuthorizationStatus)
+                {
+                    case AuthorizationStatus.Unauthorized:
+                        this.HandleUnauthorizedRequest(filterContext);
+                        break;
+
+                    case AuthorizationStatus.Forbidden:
+                        this.HandleForbiddenRequest(filterContext);
+                        break;
+
+                    default:
+                        throw new InvalidOperationException("Invalid authorization status");
+                }
             }
+        }
+
+        /// <summary>
+        /// Processes HTTP requests that fail authentication.
+        /// </summary>
+        /// <param name="filterContext"><c>AuthorizationContext</c> that encapsulates the information for using <c>System.Web.Mvc.AuthorizeAttribute</c>. This contains the controller, HTTP context, request context, action result, and route data.</param>
+        protected virtual void HandleUnauthorizedRequest(AuthorizationContext filterContext)
+        {
+            // Returns HTTP 401 - see comment in HttpUnauthorizedResult.cs.
+            filterContext.Result = new HttpUnauthorizedResult();
         }
 
         /// <summary>
@@ -146,7 +200,8 @@ namespace Aliencube.AuthorizeAttribute.Extended
                 throw new ArgumentNullException("httpContext");
             }
 
-            bool isAuthorized = this.AuthorizeCore(httpContext);
+            AuthorizationStatus authorizationStatus;
+            bool isAuthorized = this.AuthorizeCore(httpContext, out authorizationStatus);
             return (isAuthorized) ? HttpValidationStatus.Valid : HttpValidationStatus.IgnoreThisRequest;
         }
 

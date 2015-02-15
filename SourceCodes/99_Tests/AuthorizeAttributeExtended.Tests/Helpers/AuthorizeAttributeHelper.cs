@@ -8,14 +8,14 @@ namespace Aliencube.AuthorizeAttribute.Extended.Tests.Helpers
     /// </summary>
     public class AuthorizeAttributeHelper : AuthorizeAttribute
     {
-        public virtual bool PublicAuthorizeCore(HttpContextBase httpContext)
+        public virtual bool PublicAuthorizeCore(HttpContextBase httpContext, out AuthorizationStatus authorizationStatus)
         {
-            return base.AuthorizeCore(httpContext);
+            return base.AuthorizeCore(httpContext, out authorizationStatus);
         }
 
-        protected override bool AuthorizeCore(HttpContextBase httpContext)
+        protected override bool AuthorizeCore(HttpContextBase httpContext, out AuthorizationStatus authorizationStatus)
         {
-            return this.PublicAuthorizeCore(httpContext);
+            return this.PublicAuthorizeCore(httpContext, out authorizationStatus);
         }
 
         public virtual HttpValidationStatus PublicOnCacheAuthorization(HttpContextBase httpContext)
@@ -28,6 +28,16 @@ namespace Aliencube.AuthorizeAttribute.Extended.Tests.Helpers
             return this.PublicOnCacheAuthorization(httpContext);
         }
 
+        public virtual void PublicHandleUnauthorizedRequest(AuthorizationContext filterContext)
+        {
+            base.HandleUnauthorizedRequest(filterContext);
+        }
+
+        protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
+        {
+            this.PublicHandleUnauthorizedRequest(filterContext);
+        }
+
         public virtual void PublicHandleForbiddenRequest(AuthorizationContext filterContext)
         {
             base.HandleForbiddenRequest(filterContext);
@@ -38,11 +48,11 @@ namespace Aliencube.AuthorizeAttribute.Extended.Tests.Helpers
             this.PublicHandleForbiddenRequest(filterContext);
         }
 
-        public virtual new bool IsAuthorized
+        public new virtual AuthorizationStatus AuthorizationStatus
         {
             get
             {
-                return base.IsAuthorized;
+                return base.AuthorizationStatus;
             }
         }
     }

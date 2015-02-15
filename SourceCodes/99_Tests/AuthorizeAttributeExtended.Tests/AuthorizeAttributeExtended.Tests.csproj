@@ -102,8 +102,6 @@
     </Compile>
     <Compile Include="AuthorizeAttributeTest.cs" />
     <Compile Include="Helpers\AuthorizeAttributeHelper.cs" />
-    <Compile Include="Helpers\AuthenticateAttributeHelper.cs" />
-    <Compile Include="AuthenticateAttributeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
