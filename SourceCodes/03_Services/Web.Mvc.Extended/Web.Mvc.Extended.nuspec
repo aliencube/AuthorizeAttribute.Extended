@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package >
+    <metadata>
+        <id>Aliencube.Web.Mvc.AuthorizeAttribute</id>
+        <version>1.0.0.0</version>
+        <title>Aliencube.Web.Mvc.AuthorizeAttribute</title>
+        <authors>Aliencube Community</authors>
+        <owners>aliencube</owners>
+        <licenseUrl>https://github.com/aliencube/AuthorizeAttribute.Extended/blob/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/aliencube/AuthorizeAttribute.Extended</projectUrl>
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
+        <description>Aliencube.Web.Mvc.AuthorizeAttribute separates 403 (Forbidden) error code from 401 (Unauthorized) error code based on authentication and/or authorisation result, while ASP.NET's AuthorizeAttribute class only returns 401 (Unauthorized) error code.</description>
+        <copyright>Aliencube Community Copyright 2015</copyright>
+        <tags>Aliencube, AuthorizeAttribute, MVC, HttpStatusCode, Unauthorized, Forbidden</tags>
+        <dependencies>
+            <dependency id="Microsoft.AspNet.Mvc" version="5.0.0" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="bin\Release\**\Aliencube.Web.Mvc.Extended.*" target="lib" />
+    </files>
+</package>

@@ -31,6 +31,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "99_Tests", "99_Tests", "{C3
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthorizeAttributeExtended.Tests", "99_Tests\AuthorizeAttributeExtended.Tests\AuthorizeAttributeExtended.Tests.csproj", "{59893C38-5D80-4DC8-97AC-FBB7990E521F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Mvc.Extended", "03_Services\Web.Mvc.Extended\Web.Mvc.Extended.csproj", "{E6ED7FC5-99B4-4F99-94D1-3071516BB380}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Http.Extended", "03_Services\Web.Http.Extended\Web.Http.Extended.csproj", "{3EBA1643-CBD2-410E-9C05-F88D6B640F40}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +53,14 @@ Global
 		{59893C38-5D80-4DC8-97AC-FBB7990E521F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59893C38-5D80-4DC8-97AC-FBB7990E521F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59893C38-5D80-4DC8-97AC-FBB7990E521F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6ED7FC5-99B4-4F99-94D1-3071516BB380}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6ED7FC5-99B4-4F99-94D1-3071516BB380}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6ED7FC5-99B4-4F99-94D1-3071516BB380}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6ED7FC5-99B4-4F99-94D1-3071516BB380}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EBA1643-CBD2-410E-9C05-F88D6B640F40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EBA1643-CBD2-410E-9C05-F88D6B640F40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EBA1643-CBD2-410E-9C05-F88D6B640F40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EBA1643-CBD2-410E-9C05-F88D6B640F40}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,5 +70,7 @@ Global
 		{DF9FADE7-1841-47DD-B822-2B277DDC4DCA} = {6D8D30A2-CB93-4FAF-A4A2-D2E8B819F2A9}
 		{55650CA1-BA28-44C5-96CF-3F54E2B8440B} = {6D8D30A2-CB93-4FAF-A4A2-D2E8B819F2A9}
 		{59893C38-5D80-4DC8-97AC-FBB7990E521F} = {C34E9A27-96D2-47EF-9A17-0E89C003AD26}
+		{E6ED7FC5-99B4-4F99-94D1-3071516BB380} = {8E4CC778-F953-4207-9616-4146CD5C97AB}
+		{3EBA1643-CBD2-410E-9C05-F88D6B640F40} = {8E4CC778-F953-4207-9616-4146CD5C97AB}
 	EndGlobalSection
 EndGlobal

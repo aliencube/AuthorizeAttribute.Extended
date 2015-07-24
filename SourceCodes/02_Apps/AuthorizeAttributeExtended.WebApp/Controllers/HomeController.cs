@@ -7,7 +7,7 @@ using Aliencube.AuthorizeAttribute.Extended.WebApp.Models;
 
 namespace Aliencube.AuthorizeAttribute.Extended.WebApp.Controllers
 {
-    [Authorize]
+    [Web.Mvc.Extended.Authorize]
     public partial class HomeController : Controller
     {
         [AllowAnonymous]
@@ -63,7 +63,7 @@ namespace Aliencube.AuthorizeAttribute.Extended.WebApp.Controllers
             return true;
         }
 
-        [Authorize(Roles = "Admin")]
+        [Web.Mvc.Extended.Authorize(Roles = "Admin")]
         public virtual async Task<ActionResult> MyProfile()
         {
             var vm = new MyProfileViewModel() { Email = this.HttpContext.User.Identity.Name };
