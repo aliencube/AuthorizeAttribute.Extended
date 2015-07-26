@@ -157,8 +157,6 @@ namespace Aliencube.Web.Http.Extended
                     default:
                         throw new InvalidOperationException("Invalid authorization status");
                 }
-
-                HandleUnauthorizedRequest(actionContext);
             }
         }
 
