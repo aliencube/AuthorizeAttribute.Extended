@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Security.Claims;
 using System.Security.Principal;
+using System.Threading;
+using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
@@ -11,6 +15,8 @@ namespace Aliencube.AuthorizeAttribute.Extended.WebApp
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
+
+            GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
@@ -30,11 +36,18 @@ namespace Aliencube.AuthorizeAttribute.Extended.WebApp
                 return;
             }
 
-            var identity = new GenericIdentity(authTicket.Name, "Forms");
-            var principal = new GenericPrincipal(identity, new[] { authTicket.UserData });
+            var genericIdentity = new GenericIdentity(authTicket.Name, "Forms");
+            var genericPrincipal = new GenericPrincipal(genericIdentity, new[] { authTicket.UserData });
 
             // Set the context user
-            Context.User = principal;
+            Thread.CurrentPrincipal = genericPrincipal;
+            Context.User = genericPrincipal;
+
+            //var claim = new Claim(ClaimTypes.Name, genericIdentity.Name);
+            //var claims = new List<Claim>() {claim};
+            //var claimsIdentity = new ClaimsIdentity(claims);
+            //var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+            //Thread.CurrentPrincipal = claimsPrincipal;
         }
     }
 }

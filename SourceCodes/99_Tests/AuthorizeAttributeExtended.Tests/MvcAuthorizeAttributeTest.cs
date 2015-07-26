@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Aliencube.AuthorizeAttribute.Extended.Tests.Helpers;
+using Aliencube.Web.Mvc.Extended;
 using FluentAssertions;
 using NSubstitute;
 using NUnit.Framework;
@@ -10,13 +11,13 @@ using NUnit.Framework;
 namespace Aliencube.AuthorizeAttribute.Extended.Tests
 {
     [TestFixture]
-    public class AuthorizeAttributeTest
+    public class MvcAuthorizeAttributeTest
     {
         private HttpContextBase _httpContext;
         private ControllerContext _controllerContext;
         private ActionDescriptor _actionDescriptor;
         private AuthorizationContext _authorizationContext;
-        private AuthorizeAttributeHelper _attribute;
+        private MvcAuthorizeAttributeHelper _attribute;
 
         [SetUp]
         public void Init()
@@ -25,7 +26,7 @@ namespace Aliencube.AuthorizeAttribute.Extended.Tests
             this._controllerContext = Substitute.For<ControllerContext>();
             this._actionDescriptor = Substitute.For<ActionDescriptor>();
 
-            this._attribute = new AuthorizeAttributeHelper();
+            this._attribute = new MvcAuthorizeAttributeHelper();
         }
 
         [TearDown]

@@ -1,12 +1,13 @@
 using System.Web;
 using System.Web.Mvc;
+using Aliencube.Web.Mvc.Extended;
 
 namespace Aliencube.AuthorizeAttribute.Extended.Tests.Helpers
 {
     /// <summary>
     /// This represents the helper entity for the <c>AuthorizeAttribute</c> class.
     /// </summary>
-    public class AuthorizeAttributeHelper : AuthorizeAttribute
+    public class MvcAuthorizeAttributeHelper : Web.Mvc.Extended.AuthorizeAttribute
     {
         public virtual bool PublicAuthorizeCore(HttpContextBase httpContext, out AuthorizationStatus authorizationStatus)
         {
